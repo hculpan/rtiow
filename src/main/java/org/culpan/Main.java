@@ -36,18 +36,20 @@ public class Main {
 
             if (image != null) {
                 if (cmd.hasOption("output")) {
-                    File file = new File(cmd.getOptionValue("output"));
+/*                    File file = new File(cmd.getOptionValue("output"));
                     try (FileWriter fileWriter = new FileWriter(file)) {
                         fileWriter.write(image);
                         System.out.println("Wrote generated image to " + file.getAbsolutePath());
                     } catch (IOException e) {
                         e.printStackTrace();
-                    }
+                    }*/
+                    PpmToBitmapConverter ppmToBitmapConverter = new PpmToBitmapConverter();
+                    ppmToBitmapConverter.convertPpmToBmp(image, cmd.getOptionValue("output"));
                 } else {
                     System.out.println(image);
                 }
             }
-        } catch (ParseException e) {
+        } catch (ParseException | IOException e) {
             e.printStackTrace();
         }
     }
